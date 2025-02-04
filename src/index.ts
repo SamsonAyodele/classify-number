@@ -4,7 +4,7 @@ import {connect} from "mongoose"
 import dotenv from "dotenv"
 import axios from 'axios';
 
-const port = 5000
+const port = process.env.PORT ||  5000
 
 
 dotenv.config()
@@ -68,13 +68,15 @@ const classifyNumber = async (req: Request, res: Response): Promise<void> => {
   
   app.get('/classify-number', classifyNumber);
 
-//   app.get('/', (req: Request, res: Response) => {
-//     try {
-//         res.status(200).json('welcome to my app')
-//     } catch (error) {
-//         res.status(500).json('App not found')
-//     }
-// })
+  
+
+  app.get('/', (req: Request, res: Response) => {
+    try {
+        res.status(200).json('welcome to my app')
+    } catch (error) {
+        res.status(500).json('App not found')
+    }
+})
 
 
   

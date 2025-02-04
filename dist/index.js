@@ -27,14 +27,6 @@ app.use((0, cors_1.default)({
     methods: "GET",
     allowedHeaders: "Content-Type,Authorization"
 }));
-app.get('/', (req, res) => {
-    try {
-        res.status(200).json('welcome to my app');
-    }
-    catch (error) {
-        res.status(500).json('App not found');
-    }
-});
 const classifyNumber = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { number } = req.query;
@@ -77,6 +69,14 @@ const classifyNumber = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 app.get('/classify-number', classifyNumber);
+app.get('/', (req, res) => {
+    try {
+        res.status(200).json('welcome to my app');
+    }
+    catch (error) {
+        res.status(500).json('App not found');
+    }
+});
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`server is running on port ${port}`);
     try {
