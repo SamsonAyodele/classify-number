@@ -5,7 +5,7 @@ export const classifyNumber = async (req: Request, res: Response): Promise<void>
   try {
     const { number } = req.query;
 
-    const validNumber = /^[0-9]+$/.test(number as string);
+    const validNumber = /^-?[0-9]+$/.test(number as string); 
     if (!validNumber) {
       res.status(400).json({number, error: true });
       return;
@@ -52,7 +52,7 @@ export const classifyNumber = async (req: Request, res: Response): Promise<void>
       is_prime: isPrime(num),
       is_perfect: isPerfect(num), 
       properties,
-      digit_sum: num.toString().split("").reduce((sum, d) => sum + parseInt(d), 0),
+      digit_sum: Math.abs(num).toString().split("").reduce((sum, d) => sum + parseInt(d), 0),
       fun_fact: data.text,
     });
   } catch (error) {

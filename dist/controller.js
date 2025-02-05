@@ -17,7 +17,7 @@ const axios_1 = __importDefault(require("axios"));
 const classifyNumber = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { number } = req.query;
-        const validNumber = /^[0-9]+$/.test(number);
+        const validNumber = /^-?[0-9]+$/.test(number);
         if (!validNumber) {
             res.status(400).json({ number, error: true });
             return;
@@ -59,7 +59,7 @@ const classifyNumber = (req, res) => __awaiter(void 0, void 0, void 0, function*
             is_prime: isPrime(num),
             is_perfect: isPerfect(num),
             properties,
-            digit_sum: num.toString().split("").reduce((sum, d) => sum + parseInt(d), 0),
+            digit_sum: Math.abs(num).toString().split("").reduce((sum, d) => sum + parseInt(d), 0),
             fun_fact: data.text,
         });
     }
