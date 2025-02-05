@@ -17,7 +17,7 @@ const cors_1 = __importDefault(require("cors"));
 const mongoose_1 = require("mongoose");
 const dotenv_1 = __importDefault(require("dotenv"));
 const axios_1 = __importDefault(require("axios"));
-const port = 5000;
+const port = process.env.PORT || 5000;
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
@@ -80,7 +80,7 @@ app.get('/', (req, res) => {
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`server is running on port ${port}`);
     try {
-        yield (0, mongoose_1.connect)('mongodb://localhost:27017/classify-number');
+        yield (0, mongoose_1.connect)(process.env.URL || 'mongodb://localhost:27017/classify-number');
         console.log('connected to DB successfully');
     }
     catch (error) {
