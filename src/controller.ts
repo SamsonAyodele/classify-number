@@ -7,7 +7,7 @@ export const classifyNumber = async (req: Request, res: Response): Promise<void>
 
     const validNumber = /^[0-9]+$/.test(number as string);
     if (!validNumber) {
-      res.status(400).json({ error: 'Invalid number format', number });
+      res.status(400).json({number, error: true });
       return;
     }
 

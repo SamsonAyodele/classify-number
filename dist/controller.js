@@ -15,10 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.classifyNumber = void 0;
 const axios_1 = __importDefault(require("axios"));
 const classifyNumber = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     try {
         const { number } = req.query;
-        const num = parseInt((_a = number) !== null && _a !== void 0 ? _a : "0", 10);
+        const validNumber = /^[0-9]+$/.test(number);
+        if (!validNumber) {
+            res.status(400).json({ number, error: true });
+            return;
+        }
+        const num = parseInt(number, 10);
         if (isNaN(num)) {
             res.status(400).json({ number, error: true });
             return;
