@@ -33,6 +33,14 @@ export const classifyNumber = async (req: Request, res: Response): Promise<void>
       return strNum.split("").reduce((sum, digit) => sum + Math.pow(parseInt(digit), len), 0) === n;
     };
 
+    const isPerfect = (n: number) => {
+        let sum = 0;
+        for (let i = 1; i <= n / 2; i++) {
+          if (n % i === 0) sum += i;
+        }
+        return sum === n;
+      };
+
     const properties: string[] = [];
     if (isArmstrong(num)) properties.push("armstrong");
     properties.push(num % 2 === 0 ? "even" : "odd");
@@ -42,7 +50,7 @@ export const classifyNumber = async (req: Request, res: Response): Promise<void>
     res.json({
       number: num,
       is_prime: isPrime(num),
-      is_perfect: false, // You can implement perfect number logic later
+      is_perfect: isPerfect(num), 
       properties,
       digit_sum: num.toString().split("").reduce((sum, d) => sum + parseInt(d), 0),
       fun_fact: data.text,

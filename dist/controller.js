@@ -41,6 +41,14 @@ const classifyNumber = (req, res) => __awaiter(void 0, void 0, void 0, function*
             const len = strNum.length;
             return strNum.split("").reduce((sum, digit) => sum + Math.pow(parseInt(digit), len), 0) === n;
         };
+        const isPerfect = (n) => {
+            let sum = 0;
+            for (let i = 1; i <= n / 2; i++) {
+                if (n % i === 0)
+                    sum += i;
+            }
+            return sum === n;
+        };
         const properties = [];
         if (isArmstrong(num))
             properties.push("armstrong");
@@ -49,7 +57,7 @@ const classifyNumber = (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.json({
             number: num,
             is_prime: isPrime(num),
-            is_perfect: false, // You can implement perfect number logic later
+            is_perfect: isPerfect(num),
             properties,
             digit_sum: num.toString().split("").reduce((sum, d) => sum + parseInt(d), 0),
             fun_fact: data.text,
