@@ -22,15 +22,16 @@ app.use(cors({
 }))
 
 
-  app.use("/classifyNumber", router);
+app.use("/api/classify-number", router);
 
-  app.get('/', (req: Request, res: Response) => {
-    try {
-        res.status(200).json('welcome to my app')
-    } catch (error) {
-        res.status(500).json('App not found')
-    }
+app.get('/', (req: Request, res: Response) => {
+  try {
+      res.status(200).json('welcome to my app')
+  } catch (error) {
+      res.status(500).json('App not found')
+  }
 })
+
 
 
 app.listen(port, async() => {

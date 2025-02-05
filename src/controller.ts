@@ -4,7 +4,8 @@ import axios from "axios";
 export const classifyNumber = async (req: Request, res: Response): Promise<void> => {
   try {
     const { number } = req.query;
-    const num = parseInt(number as string, 10);
+    const num = parseInt((number as string) ?? "0", 10);
+
 
     if (isNaN(num)) {
       res.status(400).json({ number, error: true });

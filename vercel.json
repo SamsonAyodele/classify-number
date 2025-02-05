@@ -8,7 +8,11 @@
     ],
     "routes": [
       {
-        "src": "/(.*)",
+        "src": "/api/classifyNumber",
+        "dest": "dist/index.js"
+      },
+      {
+        "src": "/.*",
         "dest": "dist/index.js"
       }
     ]
